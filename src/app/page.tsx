@@ -1,113 +1,252 @@
-import Image from 'next/image'
+"use client";
 
+import { useState, useEffect } from "react";
+import CertificateMaker from "../components/certificateMaker";
+import Marquee from "react-fast-marquee";
+import { DatePicker, Select } from "antd";
+import { toast } from "react-toastify";
+import Container from "@/components/container";
 export default function Home() {
+  const [canDownload, setCanDownload] = useState(false);
+  const [name, setName] = useState("");
+  const [mode, setMode] = useState("");
+  const [text, setText] = useState("");
+  const [date, setDate] = useState("");
+  const [sex, setSex] = useState("");
+  useEffect(() => {
+    setCanDownload(false);
+  }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <>
+      <Container>
+        <main className="relative min-h-screen text-zinc-100">
+          <div className="ml-[10000px] h-screen overflow-hidden">
+            <CertificateMaker
+              name={name}
+              mode={mode}
+              for={text}
+              date={date}
+              sex={sex}
+              canDownload={canDownload}
             />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          </div>
+          <div className="absolute top-0 min-h-screen w-full bg-slate-950 font-mono">
+            <div className="flex h-16 items-center bg-slate-800">
+              <div className="ml-5 text-2xl">meaw!</div>
+            </div>
+            <div className="bg-slate-900 text-center text-[16vw] uppercase">
+              Fakeficate
+            </div>
+            <Marquee
+              style={{
+                fontSize: "26px",
+                backgroundColor: "#1E293B",
+              }}
+            >
+              Fakeficate provides you a QR code protected certificate to use
+              anywhere! Get your certificate now!
+            </Marquee>
+            {/* <div className="my-2 text-center text-[4vw] capitalize">
+            get a certificate like this now!
+          </div>
+          <div className="relative overflow-x-hidden px-4 backdrop-blur-sm sm:px-8 md:px-16 lg:px-32 xl:px-64 2xl:px-[32rem]">
+            <img
+              src="../component.png"
+              alt=""
+              className="rounded-lg object-cover"
+            />
+            <div className="bg-slate-5 absolute top-0 h-full max-w-6xl backdrop-blur-[1px] text-transparent backdrop-brightness-50">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+            <div className="bg-slate-5 absolute bottom-0 right-0 h-full max-w-3xl backdrop-blur-sm"></div>
+          </div>
+          <div className="my-2 text-center text-[4vw] capitalize">
+            Fully customizable!
+          </div> */}
+            <div className="mt-8 flex w-full flex-col items-center space-y-4 px-4">
+              <div className="w-full max-w-lg">
+                <div className="text-xl capitalize">name</div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Select"
+                  className="h-8 w-full rounded-lg px-3 font-sans text-black placeholder:text-sm placeholder:text-zinc-800 focus:outline-none"
+                />
+              </div>
+              <div className="w-full max-w-lg">
+                <div className="text-xl capitalize">mode</div>
+                <Select
+                  defaultValue="Select"
+                  style={{ width: "100%" }}
+                  onChange={(value) => {
+                    setMode(value);
+                  }}
+                  size="middle"
+                  options={[
+                    {
+                      value: "Completion",
+                      label: "Completion",
+                    },
+                    {
+                      value: "appreciation",
+                      label: "Appreciation",
+                    },
+                    {
+                      value: "achievement",
+                      label: "Achievement",
+                    },
+                    {
+                      value: "excellence",
+                      label: "Excellence",
+                    },
+                    {
+                      value: "participation",
+                      label: "Participation",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="w-full max-w-lg">
+                <div className="text-xl capitalize">for</div>
+                <input
+                  type="text"
+                  value={text}
+                  maxLength={90}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Select"
+                  className="h-8 w-full rounded-lg px-3 font-sans text-black placeholder:text-sm placeholder:text-zinc-800 focus:outline-none"
+                />
+              </div>
+              <div className="w-full max-w-lg">
+                <div className="text-xl capitalize">sex</div>
+                <Select
+                  defaultValue="Select"
+                  style={{ width: "100%" }}
+                  onChange={(value) => {
+                    setSex(value);
+                  }}
+                  size="middle"
+                  options={[
+                    {
+                      value: "him",
+                      label: "Male",
+                    },
+                    {
+                      value: "her",
+                      label: "Female",
+                    },
+                    {
+                      value: "this braindead",
+                      label: "Email",
+                    },
+                    {
+                      value: "hm",
+                      label: "LGBTQ+",
+                      disabled: true,
+                    },
+                  ]}
+                />
+              </div>
+              <div className="w-full max-w-lg">
+                <div className="text-xl capitalize">date</div>
+                <DatePicker
+                  placeholder="Select"
+                  className="text-black"
+                  onChange={(value) => {
+                    setDate(value!.format("DD MMMM YYYY"));
+                  }}
+                  size="middle"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                if (name !== "") {
+                  if (mode !== "") {
+                    if (text !== "") {
+                      if (sex !== "") {
+                        if (date !== "") {
+                          setCanDownload(true);
+                          setTimeout(() => {
+                            setCanDownload(false);
+                          }, 1000);
+                        } else {
+                          toast.error("Enter a valid date!", {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            pauseOnFocusLoss: false,
+                            theme: "dark",
+                          });
+                        }
+                      } else {
+                        toast.error("Enter a valid sex!", {
+                          position: "top-center",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          pauseOnFocusLoss: false,
+                          theme: "dark",
+                        });
+                      }
+                    } else {
+                      toast.error("Enter a valid for!", {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        pauseOnFocusLoss: false,
+                        theme: "dark",
+                      });
+                    }
+                  } else {
+                    toast.error("Enter a valid mode!", {
+                      position: "top-center",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      pauseOnFocusLoss: false,
+                      theme: "dark",
+                    });
+                  }
+                } else {
+                  toast.error("Enter a valid name!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    pauseOnFocusLoss: false,
+                    theme: "dark",
+                  });
+                }
+              }}
+              className="my-10 flex w-full justify-center px-4"
+            >
+              <div className="flex h-8 w-full max-w-lg cursor-pointer items-center justify-center rounded-md bg-zinc-100 text-center text-lg capitalize text-zinc-900">
+                download
+              </div>
+            </div>
+          </div>
+        </main>
+      </Container>
+    </>
+  );
 }
