@@ -16,7 +16,7 @@ const CertificateMaker: React.FC<CertificateMakerProps> = (props) => {
   const [secretCode, setSecretCode] = useState("");
   const certificateRef = useRef<null | HTMLDivElement>(null);
   const downloadCertificate = async () => {
-    exportComponentAsPNG(certificateRef);
+    exportComponentAsPNG(certificateRef, { fileName: "certificate" });
     const data = {
       name: props.name,
       mode: props.mode,
