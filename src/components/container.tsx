@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="font-mon scrollbar-none overflow-y-auto">
+    <div className="font-mon overflow-y-auto scrollbar-none selection:bg-yellow-500 selection:text-zinc-800">
       {children}
       <ToastContainer />
     </div>

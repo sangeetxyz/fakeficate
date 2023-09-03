@@ -521,6 +521,7 @@ export default function Home() {
                     }}
                     placeholder="Code"
                     className="mt-1"
+                    disabled
                   />
                   <Accordion
                     type="single"
