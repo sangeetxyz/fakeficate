@@ -69,7 +69,7 @@ const CertificateMaker: React.FC<CertificateMakerProps> = (props) => {
 
   useEffect(() => {
     setFakeNames(getRandomNamePair(namePairs));
-  }, []);
+  }, [props]);
 
   return (
     <div
@@ -93,7 +93,7 @@ const CertificateMaker: React.FC<CertificateMakerProps> = (props) => {
         alt="certificate"
         className="w-[2000px] object-contain"
       />
-      
+
       <div className="absolute top-[29%] flex w-full justify-center">
         <div
           className={cn(
