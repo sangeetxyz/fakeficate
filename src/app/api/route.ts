@@ -3,8 +3,8 @@ import Razorpay from "razorpay";
 
 export async function GET(request: Request) {
   let instance = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-    key_secret: process.env.NEXT_PUBLIC_RAZORPAY_KEY_SECRECT,
+    key_id: "rzp_test_oFW3klARVMsOoT",
+    key_secret: "jvM31hdgvORiEM09vbi6YEvv",
   });
 
   const response = await instance.orders.create({

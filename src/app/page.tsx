@@ -41,6 +41,7 @@ import demo4 from "../../public/demo4.png";
 import demo5 from "../../public/demo5.png";
 import { Staatliches } from "next/font/google";
 import useRazorpay from "react-razorpay";
+import { handlePayment } from "@/utils/razorpay/razorpay";
 const staatliches = Staatliches({
   weight: ["400"],
   subsets: ["latin", "latin-ext"],
@@ -60,53 +61,6 @@ export default function Home() {
   useEffect(() => {
     setCanDownload(false);
   }, []);
-  const handlePayment = async (amount: string, Razorpay: any) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}api`);
-    const order_id = await response.json();
-    const options = {
-      key: "rzp_test_oFW3klARVMsOoT",
-      amount: amount,
-      currency: "INR",
-      name: "FAKEFICATE",
-      description: "Pay to get the certificate",
-      image:
-        "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
-      order_id: order_id.id,
-      handler: function (response: any) {
-         setCanDownload(true);
-         toast.success("Cerificte downloaded!", {
-           position: "top-center",
-           autoClose: 5000,
-           hideProgressBar: false,
-           closeOnClick: true,
-           pauseOnHover: true,
-           draggable: true,
-           progress: undefined,
-           pauseOnFocusLoss: false,
-           theme: "dark",
-         });
-         setTimeout(() => {
-           setCanDownload(false);
-         }, 1000);
-      },
-      // prefill: {
-      //   name,
-      //   email,
-      //   contact,
-      // },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#18181B",
-      },
-    };
-    const rzpay = new Razorpay(options);
-    rzpay.on("payment.failed", function (response: any) {
-      alert(response.error.code);
-    });
-    rzpay.open();
-  };
   return (
     <>
       <Container>
@@ -677,14 +631,14 @@ export default function Home() {
                         });
                       }
 
-                      console.log("name - " + name);
-                      console.log("template - " + template);
-                      console.log("mode - " + mode);
-                      console.log("sex - " + sex);
-                      console.log("date - " + date);
-                      console.log("reason - " + reason);
-                      console.log("role1 - " + role1);
-                      console.log("role2 - " + role2);
+                      // console.log("name - " + name);
+                      // console.log("template - " + template);
+                      // console.log("mode - " + mode);
+                      // console.log("sex - " + sex);
+                      // console.log("date - " + date);
+                      // console.log("reason - " + reason);
+                      // console.log("role1 - " + role1);
+                      // console.log("role2 - " + role2);
                     }}
                   >
                     Download
