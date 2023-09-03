@@ -108,7 +108,6 @@ export default function Home() {
     });
     rzpay.open();
   };
-
   return (
     <>
       <Container>
