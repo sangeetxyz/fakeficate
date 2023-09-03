@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, ClipboardCopy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -32,6 +32,7 @@ import {
 import Container from "@/components/container";
 import { FiShare2 } from "react-icons/fi";
 import { toast } from "react-toastify";
+import clipboardCopy from "clipboard-copy";
 import Image from "next/image";
 import demo1 from "../../public/demo1.png";
 import demo2 from "../../public/demo2.png";
@@ -74,7 +75,23 @@ export default function Home() {
             <div className="flex h-16 w-full justify-center bg-zinc-900 text-zinc-100">
               <div className="flex w-full max-w-5xl items-center justify-between px-6">
                 <div className="font-mono text-2xl capitalize">fakeficate</div>
-                <div className="flex items-center space-x-2">
+                <div
+                  className="flex cursor-pointer items-center"
+                  onClick={async () => {
+                    await clipboardCopy("https://fakeficate.vercel.app/");
+                    toast.success("Link copied to Clipboard!", {
+                      position: "top-center",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      pauseOnFocusLoss: false,
+                      theme: "dark",
+                    });
+                  }}
+                >
                   {/* <div className="capitalize">share</div> */}
                   <FiShare2 size={24} />
                 </div>
@@ -466,6 +483,17 @@ export default function Home() {
                                     if (role2.length > 0) {
                                       if (discountCode === "MEAW100") {
                                         setCanDownload(true);
+                                        toast.success("Cerificte downloaded!", {
+                                          position: "top-center",
+                                          autoClose: 5000,
+                                          hideProgressBar: false,
+                                          closeOnClick: true,
+                                          pauseOnHover: true,
+                                          draggable: true,
+                                          progress: undefined,
+                                          pauseOnFocusLoss: false,
+                                          theme: "dark",
+                                        });
                                         setTimeout(() => {
                                           setCanDownload(false);
                                         }, 1000);
