@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/accordion";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -33,6 +32,12 @@ import {
 import Container from "@/components/container";
 import { FiShare2 } from "react-icons/fi";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import demo1 from "../../public/demo1.png";
+import demo2 from "../../public/demo2.png";
+import demo3 from "../../public/demo3.png";
+import demo4 from "../../public/demo4.png";
+import demo5 from "../../public/demo5.png";
 export default function Home() {
   const [canDownload, setCanDownload] = useState(false);
   const [template, setTemplate] = useState("classic");
@@ -94,27 +99,58 @@ export default function Home() {
                     </TabsList>
                     <TabsContent value="classic">
                       <div className="flex justify-center">
-                        <img src="./demo1.png" alt="" className="rounded" />
+                        {/* <img src="./demo1.png" alt="" className="rounded" /> */}
+                        <Image
+                          src={demo1}
+                          alt="certificate"
+                          height={2000}
+                          width={2000}
+                          className="w-full rounded"
+                        />
                       </div>
                     </TabsContent>
                     <TabsContent value="banana">
                       <div className="flex justify-center">
-                        <img src="./demo2.png" alt="" className="rounded" />
+                        <Image
+                          src={demo2}
+                          alt="certificate"
+                          height={2000}
+                          width={2000}
+                          className="w-full rounded"
+                        />
                       </div>
                     </TabsContent>
                     <TabsContent value="marble">
                       <div className="flex justify-center">
-                        <img src="./demo3.png" alt="" className="rounded" />
+                        <Image
+                          src={demo3}
+                          alt="certificate"
+                          height={2000}
+                          width={2000}
+                          className="w-full rounded"
+                        />
                       </div>
                     </TabsContent>
                     <TabsContent value="pesta">
                       <div className="flex justify-center">
-                        <img src="./demo4.png" alt="" className="rounded" />
+                        <Image
+                          src={demo4}
+                          alt="certificate"
+                          height={2000}
+                          width={2000}
+                          className="w-full rounded"
+                        />
                       </div>
                     </TabsContent>
                     <TabsContent value="vintage">
                       <div className="flex justify-center">
-                        <img src="./demo5.png" alt="" className="rounded" />
+                        <Image
+                          src={demo5}
+                          alt="certificate"
+                          height={2000}
+                          width={2000}
+                          className="w-full rounded"
+                        />
                       </div>
                     </TabsContent>
                   </Tabs>
@@ -179,8 +215,8 @@ export default function Home() {
                     <AccordionItem value="item-1">
                       <AccordionTrigger>What is this?</AccordionTrigger>
                       <AccordionContent>
-                        It will be prined on the bellow of CERTIFICATE as
-                        the template.
+                        It will be prined on the bellow of CERTIFICATE as the
+                        template.
                       </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
@@ -195,8 +231,8 @@ export default function Home() {
                       <AccordionTrigger>Example of this?</AccordionTrigger>
                       <AccordionContent>
                         If you complete a task then you can set the mode to
-                        COMPLETION or if you achieve some goal then you can
-                        set it to ACHIEVEMENT.
+                        COMPLETION or if you achieve some goal then you can set
+                        it to ACHIEVEMENT.
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
