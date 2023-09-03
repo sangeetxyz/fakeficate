@@ -61,53 +61,53 @@ export default function Home() {
   useEffect(() => {
     setCanDownload(false);
   }, []);
-  const handlePayment = async (amount: string, Razorpay: any) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}api`);
-    const order_id = await response.json();
-    const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      amount: amount,
-      currency: "INR",
-      name: "FAKEFICATE",
-      description: "Pay to get the certificate",
-      image:
-        "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
-      order_id: order_id.id,
-      handler: function (response: any) {
-        setCanDownload(true);
-        toast.success("Order confirmed!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          pauseOnFocusLoss: false,
-          theme: "dark",
-        });
-        setTimeout(() => {
-          setCanDownload(false);
-        }, 1000);
-      },
-      // prefill: {
-      //   name,
-      //   email,
-      //   contact,
-      // },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#18181B",
-      },
-    };
-    const rzpay = new Razorpay(options);
-    rzpay.on("payment.failed", function (response: any) {
-      alert(response.error.code);
-    });
-    rzpay.open();
-  };
+  // const handlePayment = async (amount: string, Razorpay: any) => {
+  //   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}api`);
+  //   const order_id = await response.json();
+  //   const options = {
+  //     key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+  //     amount: amount,
+  //     currency: "INR",
+  //     name: "FAKEFICATE",
+  //     description: "Pay to get the certificate",
+  //     image:
+  //       "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+  //     order_id: order_id.id,
+  //     handler: function (response: any) {
+  //       setCanDownload(true);
+  //       toast.success("Order confirmed!", {
+  //         position: "top-center",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //         pauseOnFocusLoss: false,
+  //         theme: "dark",
+  //       });
+  //       setTimeout(() => {
+  //         setCanDownload(false);
+  //       }, 1000);
+  //     },
+  //     // prefill: {
+  //     //   name,
+  //     //   email,
+  //     //   contact,
+  //     // },
+  //     notes: {
+  //       address: "Razorpay Corporate Office",
+  //     },
+  //     theme: {
+  //       color: "#18181B",
+  //     },
+  //   };
+  //   const rzpay = new Razorpay(options);
+  //   rzpay.on("payment.failed", function (response: any) {
+  //     alert(response.error.code);
+  //   });
+  //   rzpay.open();
+  // };
   return (
     <>
       <Container>
@@ -550,7 +550,7 @@ export default function Home() {
                                     if (role2.length > 0) {
                                       if (discountCode === "MEAW100") {
                                         setCanDownload(true);
-                                        toast.success("Cerificte downloaded!", {
+                                        toast.success("Order accepted!", {
                                           position: "top-center",
                                           autoClose: 5000,
                                           hideProgressBar: false,
@@ -565,13 +565,28 @@ export default function Home() {
                                           setCanDownload(false);
                                         }, 1000);
                                       } else {
-                                        handlePayment(
-                                          "30",
-                                          Razorpay,
-                                          // "gandu singh",
-                                          // "asjdha@gmail.com",
-                                          // "+918787878787",
-                                        );
+                                        // handlePayment(
+                                        //   "30",
+                                        //   Razorpay,
+                                        //   // "gandu singh",
+                                        //   // "asjdha@gmail.com",
+                                        //   // "+918787878787",
+                                        // );
+                                        setCanDownload(true);
+                                        toast.success("Order accepted!", {
+                                          position: "top-center",
+                                          autoClose: 5000,
+                                          hideProgressBar: false,
+                                          closeOnClick: true,
+                                          pauseOnHover: true,
+                                          draggable: true,
+                                          progress: undefined,
+                                          pauseOnFocusLoss: false,
+                                          theme: "dark",
+                                        });
+                                        setTimeout(() => {
+                                          setCanDownload(false);
+                                        }, 1000);
                                       }
                                     } else {
                                       toast.error("Enter a alid Role2!", {
