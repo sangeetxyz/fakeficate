@@ -1,4 +1,5 @@
 "use client";
+
 import { db } from "@/utils/firebase/fire";
 import { DocumentSnapshot, doc, getDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
