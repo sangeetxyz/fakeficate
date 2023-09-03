@@ -39,6 +39,11 @@ import demo2 from "../../public/demo2.png";
 import demo3 from "../../public/demo3.png";
 import demo4 from "../../public/demo4.png";
 import demo5 from "../../public/demo5.png";
+import { Staatliches } from "next/font/google";
+const staatliches = Staatliches({
+  weight: ["400"],
+  subsets: ["latin", "latin-ext"],
+});
 export default function Home() {
   const [canDownload, setCanDownload] = useState(false);
   const [template, setTemplate] = useState("classic");
@@ -74,7 +79,14 @@ export default function Home() {
             {/* navbar */}
             <div className="flex h-16 w-full justify-center bg-zinc-900 text-zinc-100">
               <div className="flex w-full max-w-5xl items-center justify-between px-6">
-                <div className="font-mono text-2xl capitalize">fakeficate</div>
+                <div
+                  className={cn(
+                    staatliches.className,
+                    "mt-1.5 font-mono text-4xl capitalize",
+                  )}
+                >
+                  fakeficate
+                </div>
                 <div
                   className="flex cursor-pointer items-center"
                   onClick={async () => {
