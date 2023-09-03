@@ -2,178 +2,530 @@
 
 import { useState, useEffect } from "react";
 import CertificateMaker from "../components/certificateMaker";
-import Marquee from "react-fast-marquee";
-import { DatePicker, Select } from "antd";
-import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import Container from "@/components/container";
+import { FiShare2 } from "react-icons/fi";
+import { toast } from "react-toastify";
 export default function Home() {
   const [canDownload, setCanDownload] = useState(false);
+  const [template, setTemplate] = useState("classic");
   const [name, setName] = useState("");
   const [mode, setMode] = useState("");
-  const [text, setText] = useState("");
-  const [date, setDate] = useState("");
-  const [sex, setSex] = useState("");
+  const [reason, setReason] = useState("");
+  const [date, setDate] = useState<Date>();
+  const [sex, setSex] = useState("him");
+  const [role1, setRole1] = useState("");
+  const [role2, setRole2] = useState("");
+  const [discountCode, setDiscountCode] = useState("");
   useEffect(() => {
     setCanDownload(false);
   }, []);
   return (
     <>
       <Container>
-        <main className="relative min-h-screen text-zinc-100">
+        <main className="relative min-h-screen">
           <div className="ml-[10000px] h-screen overflow-hidden">
             <CertificateMaker
               name={name}
               mode={mode}
-              for={text}
-              date={date}
+              reason={reason}
+              date={date!}
               sex={sex}
+              role1={role1}
+              role2={role2}
+              template={template}
               canDownload={canDownload}
             />
           </div>
-          <div className="absolute top-0 min-h-screen w-full bg-slate-950 font-mono">
-            <div className="flex h-16 items-center bg-slate-800">
-              <div className="ml-5 text-2xl">meaw!</div>
-            </div>
-            <div className="bg-slate-900 text-center text-[16vw] uppercase">
-              Fakeficate
-            </div>
-            <Marquee
-              style={{
-                fontSize: "26px",
-                backgroundColor: "#1E293B",
-              }}
-            >
-              Fakeficate provides you a QR code protected certificate to use
-              anywhere! Get your certificate now!
-            </Marquee>
-            {/* <div className="my-2 text-center text-[4vw] capitalize">
-            get a certificate like this now!
-          </div>
-          <div className="relative overflow-x-hidden px-4 backdrop-blur-sm sm:px-8 md:px-16 lg:px-32 xl:px-64 2xl:px-[32rem]">
-            <img
-              src="../component.png"
-              alt=""
-              className="rounded-lg object-cover"
-            />
-            <div className="bg-slate-5 absolute top-0 h-full max-w-6xl backdrop-blur-[1px] text-transparent backdrop-brightness-50">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-            <div className="bg-slate-5 absolute bottom-0 right-0 h-full max-w-3xl backdrop-blur-sm"></div>
-          </div>
-          <div className="my-2 text-center text-[4vw] capitalize">
-            Fully customizable!
-          </div> */}
-            <div className="mt-8 flex w-full flex-col items-center space-y-4 px-4">
-              <div className="w-full max-w-lg">
-                <div className="text-xl capitalize">name</div>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Select"
-                  className="h-8 w-full rounded-lg px-3 font-sans text-black placeholder:text-sm placeholder:text-zinc-800 focus:outline-none"
-                />
-              </div>
-              <div className="w-full max-w-lg">
-                <div className="text-xl capitalize">mode</div>
-                <Select
-                  defaultValue="Select"
-                  style={{ width: "100%" }}
-                  onChange={(value) => {
-                    setMode(value);
-                  }}
-                  size="middle"
-                  options={[
-                    {
-                      value: "Completion",
-                      label: "Completion",
-                    },
-                    {
-                      value: "appreciation",
-                      label: "Appreciation",
-                    },
-                    {
-                      value: "achievement",
-                      label: "Achievement",
-                    },
-                    {
-                      value: "excellence",
-                      label: "Excellence",
-                    },
-                    {
-                      value: "participation",
-                      label: "Participation",
-                    },
-                  ]}
-                />
-              </div>
-              <div className="w-full max-w-lg">
-                <div className="text-xl capitalize">for</div>
-                <input
-                  type="text"
-                  value={text}
-                  maxLength={90}
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="Select"
-                  className="h-8 w-full rounded-lg px-3 font-sans text-black placeholder:text-sm placeholder:text-zinc-800 focus:outline-none"
-                />
-              </div>
-              <div className="w-full max-w-lg">
-                <div className="text-xl capitalize">sex</div>
-                <Select
-                  defaultValue="Select"
-                  style={{ width: "100%" }}
-                  onChange={(value) => {
-                    setSex(value);
-                  }}
-                  size="middle"
-                  options={[
-                    {
-                      value: "him",
-                      label: "Male",
-                    },
-                    {
-                      value: "her",
-                      label: "Female",
-                    },
-                    {
-                      value: "this braindead",
-                      label: "Email",
-                    },
-                    {
-                      value: "hm",
-                      label: "LGBTQ+",
-                      disabled: true,
-                    },
-                  ]}
-                />
-              </div>
-              <div className="w-full max-w-lg">
-                <div className="text-xl capitalize">date</div>
-                <DatePicker
-                  placeholder="Select"
-                  className="text-black"
-                  onChange={(value) => {
-                    setDate(value!.format("DD MMMM YYYY"));
-                  }}
-                  size="middle"
-                  style={{
-                    width: "100%",
-                  }}
-                />
+          <div className="hidde absolute top-0 min-h-screen w-full justify-center bg-zinc-950">
+            {/* navbar */}
+            <div className="flex h-16 w-full justify-center bg-zinc-900 text-zinc-100">
+              <div className="flex w-full max-w-5xl items-center justify-between px-6">
+                <div className="font-mono text-2xl capitalize">fakeficate</div>
+                <div className="flex items-center space-x-2">
+                  {/* <div className="capitalize">share</div> */}
+                  <FiShare2 size={24} />
+                </div>
               </div>
             </div>
-            <div
-              onClick={() => {
-                if (name !== "") {
-                  if (mode !== "") {
-                    if (text !== "") {
-                      if (sex !== "") {
-                        if (date !== "") {
-                          setCanDownload(true);
-                          setTimeout(() => {
-                            setCanDownload(false);
-                          }, 1000);
+            {/* body */}
+            <div className="flex w-full justify-center">
+              <div className="flex w-full max-w-5xl flex-col items-center px-6">
+                <div className="flex flex-col items-start rounded-lg pt-4">
+                  <div className="text-xl text-zinc-100">Choose Template</div>
+                  <Tabs
+                    defaultValue="classic"
+                    className="mt-1 flex flex-col justify-center"
+                    onValueChange={setTemplate}
+                  >
+                    <TabsList>
+                      <TabsTrigger value="classic">Classic</TabsTrigger>
+                      <TabsTrigger value="banana">Banana</TabsTrigger>
+                      <TabsTrigger value="marble">Marbel</TabsTrigger>
+                      <TabsTrigger value="pesta">Pesta</TabsTrigger>
+                      <TabsTrigger value="vintage">Vintage</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="classic">
+                      <div className="flex justify-center">
+                        <img src="./demo1.png" alt="" className="rounded" />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="banana">
+                      <div className="flex justify-center">
+                        <img src="./demo2.png" alt="" className="rounded" />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="marble">
+                      <div className="flex justify-center">
+                        <img src="./demo3.png" alt="" className="rounded" />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="pesta">
+                      <div className="flex justify-center">
+                        <img src="./demo4.png" alt="" className="rounded" />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="vintage">
+                      <div className="flex justify-center">
+                        <img src="./demo5.png" alt="" className="rounded" />
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                  <div className="mt-8 text-xl text-zinc-100">Enter Name</div>
+                  <Input
+                    type="text"
+                    value={name}
+                    onChange={(event) => {
+                      setName(event.target.value);
+                    }}
+                    placeholder="Name"
+                    className="mt-1"
+                  />
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>Is it capitalized?</AccordionTrigger>
+                      <AccordionContent>
+                        Yes. It is capitaliazed no matter what you type.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>Is it a full name?</AccordionTrigger>
+                      <AccordionContent>
+                        Yes. It needs a complete full name to look good on the
+                        certificate.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <div className="mt-8 text-xl text-zinc-100">Select Mode</div>
+                  <Select
+                    onValueChange={(value) => {
+                      setMode(value);
+                    }}
+                  >
+                    <SelectTrigger className="mt-1 w-full">
+                      <SelectValue placeholder="Select a mode" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Modes</SelectLabel>
+                        <SelectItem value="completion">Completion</SelectItem>
+                        <SelectItem value="achievement">Achievement</SelectItem>
+                        <SelectItem value="appreciation">
+                          Appreciation
+                        </SelectItem>
+                        <SelectItem value="excellence">Excellence</SelectItem>
+                        <SelectItem value="participation">
+                          Participation
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>What is this?</AccordionTrigger>
+                      <AccordionContent>
+                        It will be prined on the bellow of CERTIFICATE as
+                        the template.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>Need of this?</AccordionTrigger>
+                      <AccordionContent>
+                        It is important to understand how it reflects the
+                        meaning of the certificate. You should use appropreate
+                        mode as per your need.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                      <AccordionTrigger>Example of this?</AccordionTrigger>
+                      <AccordionContent>
+                        If you complete a task then you can set the mode to
+                        COMPLETION or if you achieve some goal then you can
+                        set it to ACHIEVEMENT.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <div className="mt-8 text-xl text-zinc-100">Select Sex</div>
+                  <Select
+                    onValueChange={(value) => {
+                      setSex(value);
+                    }}
+                  >
+                    <SelectTrigger className="mt-1 w-full">
+                      <SelectValue placeholder="Select a option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Sex</SelectLabel>
+                        <SelectItem value="him">Male</SelectItem>
+                        <SelectItem value="her">Female</SelectItem>
+                        <SelectItem value="achievement" disabled>
+                          LGBTQ+
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <div className="mt-8 text-xl text-zinc-100">Enter Reason</div>
+                  <Input
+                    type="text"
+                    maxLength={90}
+                    onChange={(event) => {
+                      setReason(event.target.value);
+                    }}
+                    placeholder="Reason"
+                    className="mt-1"
+                  />
+                  {reason && (
+                    <div className="mt-1 w-full text-zinc-100">
+                      <div className="w-full text-center">
+                        {`This award is given to ${sex} for ${reason}.`}
+                      </div>
+                    </div>
+                  )}
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>What is this?</AccordionTrigger>
+                      <AccordionContent>
+                        This is the reason why you are getting this certificate.
+                        It is limited to maximum 90 charactors.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>What to write?</AccordionTrigger>
+                      <AccordionContent>
+                        You have to write after, This award we give to him/her
+                        for... in the certificate. The fullstop will be
+                        automatically added in the end.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                      <AccordionTrigger>Example of this?</AccordionTrigger>
+                      <AccordionContent>
+                        attending a one day workshop of OpenAI API. We are
+                        really proud of his contributions
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <div className="mt-8 text-xl text-zinc-100">Select Date</div>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "mt-1 w-full justify-start text-left font-normal",
+                          !date && "text-muted-foreground",
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>What is this?</AccordionTrigger>
+                      <AccordionContent>
+                        It will be the which you want get the certificate on.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <div className="mt-8 text-xl text-zinc-100">Select Roles</div>
+                  <div className="flex w-full space-x-5">
+                    <Select
+                      onValueChange={(value) => {
+                        setRole1(value);
+                      }}
+                    >
+                      <SelectTrigger className="mt-1 w-full">
+                        <SelectValue placeholder="Select Role 1" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Roles</SelectLabel>
+                          <SelectItem value="head of dept">
+                            Head of Dept
+                          </SelectItem>
+                          <SelectItem value="head of event">
+                            Head of Event
+                          </SelectItem>
+                          <SelectItem value="mentor">Mentor</SelectItem>
+                          <SelectItem value="class teacher">
+                            Class Teacher
+                          </SelectItem>
+                          <SelectItem value="principle">Principle</SelectItem>
+                          <SelectItem value="executive director">
+                            Executive Director
+                          </SelectItem>
+                          <SelectItem value="representative">
+                            Representative
+                          </SelectItem>
+                          <SelectItem value="coordinator">
+                            Coordinator
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <Select
+                      onValueChange={(value) => {
+                        setRole2(value);
+                      }}
+                    >
+                      <SelectTrigger className="mt-1 w-full">
+                        <SelectValue placeholder="Select Role 2" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Roles</SelectLabel>
+                          <SelectItem value="head of dept">
+                            Head of Dept
+                          </SelectItem>
+                          <SelectItem value="head of event">
+                            Head of Event
+                          </SelectItem>
+                          <SelectItem value="mentor">Mentor</SelectItem>
+                          <SelectItem value="class teacher">
+                            Class Teacher
+                          </SelectItem>
+                          <SelectItem value="principle">Principle</SelectItem>
+                          <SelectItem value="executive director">
+                            Executive Director
+                          </SelectItem>
+                          <SelectItem value="representative">
+                            Representative
+                          </SelectItem>
+                          <SelectItem value="coordinator">
+                            Coordinator
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>What is this?</AccordionTrigger>
+                      <AccordionContent>
+                        It will be the people in specific roles who will sign
+                        your certificates.
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                      <AccordionTrigger>What to select?</AccordionTrigger>
+                      <AccordionContent>
+                        Select two different roles for two different signs as
+                        per your need.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <div className="mt-8 text-xl text-zinc-100">
+                    Discount Code (Optional)
+                  </div>
+                  <Input
+                    type="text"
+                    onChange={(event) => {
+                      setDiscountCode(event.target.value);
+                    }}
+                    placeholder="Code"
+                    className="mt-1"
+                  />
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full text-zinc-100"
+                  >
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger>What is this?</AccordionTrigger>
+                      <AccordionContent>
+                        If you have any discount code then enter it here to get
+                        a discount.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <Button
+                    variant="secondary"
+                    className="my-8 w-full"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      if (template.length > 0) {
+                        if (name.length > 0) {
+                          if (mode.length > 0) {
+                            if (sex.length > 0) {
+                              if (reason.length > 0) {
+                                if (date) {
+                                  if (role1.length > 0) {
+                                    if (role2.length > 0) {
+                                      if (discountCode === "MEAW100") {
+                                        setCanDownload(true);
+                                        setTimeout(() => {
+                                          setCanDownload(false);
+                                        }, 1000);
+                                      } else {
+                                        toast.error("Payment Coming Soon!", {
+                                          position: "top-center",
+                                          autoClose: 5000,
+                                          hideProgressBar: false,
+                                          closeOnClick: true,
+                                          pauseOnHover: true,
+                                          draggable: true,
+                                          progress: undefined,
+                                          pauseOnFocusLoss: false,
+                                          theme: "dark",
+                                        });
+                                      }
+                                    } else {
+                                      toast.error("Enter a alid Role2!", {
+                                        position: "top-center",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        pauseOnFocusLoss: false,
+                                        theme: "dark",
+                                      });
+                                    }
+                                  } else {
+                                    toast.error("Enter a valid Role1!", {
+                                      position: "top-center",
+                                      autoClose: 5000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                      pauseOnFocusLoss: false,
+                                      theme: "dark",
+                                    });
+                                  }
+                                } else {
+                                  toast.error("Enter a valid date!", {
+                                    position: "top-center",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    pauseOnFocusLoss: false,
+                                    theme: "dark",
+                                  });
+                                }
+                              } else {
+                                toast.error("Enter a valid Reason!", {
+                                  position: "top-center",
+                                  autoClose: 5000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                  pauseOnFocusLoss: false,
+                                  theme: "dark",
+                                });
+                              }
+                            } else {
+                              toast.error("Enter a valid Sex!", {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                pauseOnFocusLoss: false,
+                                theme: "dark",
+                              });
+                            }
+                          } else {
+                            toast.error("Enter a valid Mode!", {
+                              position: "top-center",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              pauseOnFocusLoss: false,
+                              theme: "dark",
+                            });
+                          }
                         } else {
-                          toast.error("Enter a valid date!", {
+                          toast.error("Enter a valid Name!", {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -186,7 +538,7 @@ export default function Home() {
                           });
                         }
                       } else {
-                        toast.error("Enter a valid sex!", {
+                        toast.error("Enter a valid Template!", {
                           position: "top-center",
                           autoClose: 5000,
                           hideProgressBar: false,
@@ -198,50 +550,20 @@ export default function Home() {
                           theme: "dark",
                         });
                       }
-                    } else {
-                      toast.error("Enter a valid for!", {
-                        position: "top-center",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        pauseOnFocusLoss: false,
-                        theme: "dark",
-                      });
-                    }
-                  } else {
-                    toast.error("Enter a valid mode!", {
-                      position: "top-center",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      pauseOnFocusLoss: false,
-                      theme: "dark",
-                    });
-                  }
-                } else {
-                  toast.error("Enter a valid name!", {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    pauseOnFocusLoss: false,
-                    theme: "dark",
-                  });
-                }
-              }}
-              className="my-10 flex w-full justify-center px-4"
-            >
-              <div className="flex h-8 w-full max-w-lg cursor-pointer items-center justify-center rounded-md bg-zinc-100 text-center text-lg capitalize text-zinc-900">
-                download
+
+                      console.log("name - " + name);
+                      console.log("template - " + template);
+                      console.log("mode - " + mode);
+                      console.log("sex - " + sex);
+                      console.log("date - " + date);
+                      console.log("reason - " + reason);
+                      console.log("role1 - " + role1);
+                      console.log("role2 - " + role2);
+                    }}
+                  >
+                    Download
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

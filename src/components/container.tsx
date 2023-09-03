@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
+    <div className="font-mon">
       {children}
       <ToastContainer />
     </div>
