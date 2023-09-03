@@ -65,7 +65,7 @@ export default function Home() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_URL}api`);
     const order_id = await response.json();
     const options = {
-      key: "rzp_test_oFW3klARVMsOoT",
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: amount,
       currency: "INR",
       name: "FAKEFICATE",
