@@ -21,11 +21,11 @@ const Page = ({ params }: { params: { code: string } }) => {
   }, []);
 
   return !data?.exists() && isLoading ? (
-    <div className="flex h-screen items-center justify-center bg-slate-950">
+    <div className="flex h-screen items-center justify-center bg-zinc-950 text-zinc-100">
       <div className="text-xl capitalize">checking certificate</div>
     </div>
   ) : !data?.exists() && !isLoading ? (
-    <div className="min-h-screen bg-slate-950 font-mono">
+    <div className="min-h-screen bg-zinc-950 font-mono text-zinc-100">
       <div className="flex justify-center py-10">
         <LuShieldAlert size={400} color="red" />
       </div>
@@ -39,7 +39,7 @@ const Page = ({ params }: { params: { code: string } }) => {
       <div className="text-center text-5xl">Thank you!</div>
     </div>
   ) : data?.exists() ? (
-    <div className="min-h-screen bg-slate-950 font-mono">
+    <div className="min-h-screen bg-zinc-950 font-mono text-zinc-100">
       <div className="flex justify-center py-10">
         <MdOutlineVerifiedUser size={400} color="#00F700" />
       </div>
@@ -51,8 +51,13 @@ const Page = ({ params }: { params: { code: string } }) => {
           ?.sex}`}</div>
         <div className="text-center text-xl">{`Achievement: ${data.data()
           ?.for}`}</div>
-        <div className="text-center text-xl">{`Date: ${data.data()
-          ?.date}`}</div>
+        <div className="text-center text-xl">{`Date: ${data
+          .data()
+          ?.date.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}`}</div>
       </div>
       <div className="text-center text-5xl">Thank you!</div>
     </div>
