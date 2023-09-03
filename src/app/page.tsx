@@ -129,55 +129,60 @@ export default function Home() {
                     <TabsContent value="classic">
                       <div className="flex justify-center">
                         {/* <img src="./demo1.png" alt="" className="rounded" /> */}
-                        <img
+                        <Image
                           src={demo1.src}
                           alt="certificate"
-                          // height={2000}
-                          // width={2000}
+                          height={1}
+                          width={900}
+                          quality={1}
                           className="w-full rounded"
                         />
                       </div>
                     </TabsContent>
                     <TabsContent value="banana">
                       <div className="flex justify-center">
-                        <img
+                        <Image
                           src={demo2.src}
                           alt="certificate"
-                          // height={2000}
-                          // width={2000}
+                          height={1}
+                          width={900}
+                          quality={1}
                           className="w-full rounded"
                         />
                       </div>
                     </TabsContent>
                     <TabsContent value="marble">
                       <div className="flex justify-center">
-                        <img
+                        <Image
                           src={demo3.src}
                           alt="certificate"
-                          // height={2000}
-                          // width={2000}
+                          height={1}
+                          width={900}
+                          quality={1}
                           className="w-full rounded"
                         />
                       </div>
                     </TabsContent>
                     <TabsContent value="pesta">
                       <div className="flex justify-center">
-                        <img
+                        <Image
                           src={demo4.src}
                           alt="certificate"
-                          // height={2000}
-                          // width={2000}
+                          height={1}
+                          width={900}
+                          quality={1}
                           className="w-full rounded"
                         />
                       </div>
                     </TabsContent>
                     <TabsContent value="vintage">
                       <div className="flex justify-center">
-                        <img
+                        <Image
                           src={demo5.src}
                           alt="certificate"
-                          // height={2000}
-                          // width={2000}
+                          height={1}
+                          width={900}
+                          quality={1}
                           className="w-full rounded"
                         />
                       </div>
