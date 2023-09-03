@@ -21,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, ClipboardCopy } from "lucide-react";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -77,7 +77,7 @@ export default function Home() {
           </div>
           <div className="hidde absolute top-0 min-h-screen w-full justify-center bg-zinc-950">
             {/* navbar */}
-            <div className="fixed flex h-16 w-full justify-center bg-zinc-900 text-zinc-100">
+            <div className="sticky top-0 flex h-16 w-full justify-center bg-zinc-900 text-zinc-100">
               <div className="flex w-full max-w-5xl items-center justify-between px-6">
                 <div
                   className={cn(
@@ -110,7 +110,7 @@ export default function Home() {
               </div>
             </div>
             {/* body */}
-            <div className="flex w-full mt-16 justify-center">
+            <div className="flex w-full justify-center">
               <div className="flex w-full max-w-5xl flex-col items-center px-6">
                 <div className="flex flex-col items-start rounded-lg pt-4">
                   <div className="text-xl text-zinc-100">Choose Template</div>
