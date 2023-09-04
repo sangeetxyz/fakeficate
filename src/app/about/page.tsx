@@ -32,7 +32,7 @@ const About = () => {
           <div
             className={cn(
               poiret_one.className,
-              "absolute top-0 mx-8 flex h-full items-center justify-center text-center text-6xl font-bold",
+              "absolute top-0 px-8 w-full flex h-full items-center justify-center text-center text-6xl font-bold",
             )}
           >
             Team of Fakeficate
