@@ -424,7 +424,7 @@ const Create = () => {
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-                <div className="mt-8 text-xl text-zinc-100">
+                {/* <div className="mt-8 text-xl text-zinc-100">
                   Discount Code (Optional)
                 </div>
                 <Input
@@ -448,8 +448,9 @@ const Create = () => {
                       discount.
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
+                </Accordion> */}
                 <Button
+                  disabled
                   variant="secondary"
                   className="my-8 w-full"
                   onClick={(event) => {
