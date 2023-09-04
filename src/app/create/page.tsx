@@ -450,7 +450,6 @@ const Create = () => {
                   </AccordionItem>
                 </Accordion> */}
                 <Button
-                  disabled
                   variant="secondary"
                   className="my-8 w-full"
                   onClick={(event) => {
