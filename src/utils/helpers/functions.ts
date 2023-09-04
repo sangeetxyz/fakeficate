@@ -12,9 +12,13 @@ export const uploadToFirebase = async (
   data: {
     name: string;
     mode: string;
-    for: string;
+    reason: string;
     sex: string;
     date: Date;
+    role1: string;
+    role2: string;
+    discountCode: string;
+    createdAt: Date;
   },
   secretCode: string,
 ) => {

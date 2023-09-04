@@ -8,4 +8,5 @@ export interface CertificateMakerProps {
   template: string;
   role1: string;
   role2: string;
+  discountCode: string;
 }

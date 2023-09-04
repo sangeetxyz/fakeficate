@@ -31,13 +31,19 @@ const CertificateMaker: React.FC<CertificateMakerProps> = (props) => {
   const certificateRef = useRef<null | HTMLDivElement>(null);
   const downloadCertificate = async () => {
     exportComponentAsPNG(certificateRef, { fileName: "certificate" });
+    const now: Date = new Date();
+
     uploadToFirebase(
       {
         name: props.name,
         mode: props.mode,
-        for: props.reason,
+        reason: props.reason,
         sex: props.sex,
         date: props.date,
+        role1: props.role1,
+        role2: props.role2,
+        discountCode: props.discountCode,
+        createdAt: now,
       },
       secretCode,
     );
@@ -57,7 +63,7 @@ const CertificateMaker: React.FC<CertificateMakerProps> = (props) => {
 
   useEffect(() => {
     const secretKey = generateRandomString(20);
-    setQrLink(process.env.NEXT_PUBLIC_URL + secretKey);
+    setQrLink(process.env.NEXT_PUBLIC_URL + "/verify" + secretKey);
     setSecretCode(secretKey);
   }, [props.reason, props.date, props.name, props.sex, props.mode]);
 
