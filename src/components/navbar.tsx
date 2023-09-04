@@ -167,12 +167,7 @@ const Navbar = () => {
                 >
                   privacy
                 </div>
-                <div
-                  className="cursor-pointer"
-                  onClick={() => {
-                    // router.push("/privacy");
-                  }}
-                >
+                <div className="cursor-pointer" onClick={handleShare}>
                   share
                 </div>
               </div>
@@ -186,25 +181,6 @@ const Navbar = () => {
             </SheetContent>
           </Sheet>
         </div>
-        {/* <div
-                  className="flex cursor-pointer items-center"
-                  onClick={async () => {
-                    await clipboardCopy("https://fakeficate.vercel.app/");
-                    toast.success("Link copied to Clipboard!", {
-                      position: "top-center",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      pauseOnFocusLoss: false,
-                      theme: "dark",
-                    });
-                  }}
-                >
-                  <FiShare2 size={24} />
-                </div> */}
       </div>
     </div>
   );
