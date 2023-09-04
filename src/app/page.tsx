@@ -36,7 +36,7 @@ export default function Home() {
               "absolute top-0 flex h-full w-full flex-col items-center justify-center space-y-4 text-center text-6xl font-bold capitalize",
             )}
           >
-            <div>Create your own certificate</div>
+            <div className="mx-8">Create your own certificate</div>
             <div
               onClick={() => {
                 router.push("/create");
@@ -50,7 +50,7 @@ export default function Home() {
         {/* body */}
         <div className="flex w-full items-center justify-center p-6 text-zinc-200">
           <div className="w-full max-w-5xl">
-            <div className="font mt-6 text-center font-mono text-3xl">
+            <div className="font my-6 text-center font-mono text-3xl">
               Multiple templates to choose from!
             </div>
             <Image
@@ -58,6 +58,7 @@ export default function Home() {
               width="1000"
               height="1000"
               alt="certificates"
+              className="pt-4"
             />
           </div>
         </div>

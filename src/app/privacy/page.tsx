@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import {Poiret_One } from "next/font/google";
+import { Poiret_One } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -30,7 +30,7 @@ const Privacy = () => {
           <div
             className={cn(
               poiret_one.className,
-              "absolute top-0 flex h-full w-full items-center justify-center text-center text-6xl font-bold",
+              "absolute top-0 mx-8 flex h-full w-full items-center justify-center text-center text-6xl font-bold",
             )}
           >
             Privacy Policy
